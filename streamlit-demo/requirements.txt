@@ -1,0 +1,8 @@
+streamlit
+pandas
+numpy
+scikit-learn
+datasets
+plotly
+faiss-gpu
+FlagEmbedding
