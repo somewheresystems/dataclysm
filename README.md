@@ -7,7 +7,7 @@
 @@@@@%%%%##@@#+#=-*%%=*@@#=%@@=+@@+=%@@+=@%+:-===@#-===-#@++@@#-++-:*@+#@+%@*#@@*#%%%%@@@@
 @@@@@%%%%##%@++*%@@@#%#@@#@#@%@%%%%%%@%%%%@@@%%@@@#@@@@@@%%%%@#@%#%@@%%#@@@%*+@%*#%%%%@@@@
 ```
-This repository provides a comprehensive guide to getting started with using DATACLYSM: a series of high-quality embeddings libraries, with coverage for the entirety of English Wikipedia and arXiv. The guide is based on the `getting_started.ipynb` notebook.
+This repository provides a comprehensive guide to getting started with using DATACLYSM: a series of high-quality embeddings libraries, with coverage for the entirety of PubMed, English Wikipedia and arXiv. The guide is based on the `getting_started.ipynb` notebook.
 
 ## Table of Contents
 1. [Installation](#installation)
