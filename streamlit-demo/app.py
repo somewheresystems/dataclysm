@@ -87,7 +87,7 @@ def load_data(num_samples):
     df = df.sample(n=num_samples)
 
     # Assuming 'embeddings' column contains the embeddings
-    embeddings = df['title_embedding'].tolist()
+    embeddings = df['title-embeddings'].tolist()
     print("embeddings length: " + str(len(embeddings)))
 
     # Convert list of lists to numpy array
@@ -407,11 +407,11 @@ def main():
             # Combine embeddings and df back into one df
             # Convert embeddings to list of lists before assigning to df
             embeddings_list = [embedding.flatten().tolist() for embedding in embeddings]
-            df['title_embedding'] = embeddings_list
+            df['title-embeddings'] = embeddings_list
             # Print the first few rows of the dataframe to check
             print(df.head())
             # Add FAISS indices for 'title_embedding' 
-            st.session_state.dataclysm_title_indexed = reshape_and_add_faiss_index(df, 'title_embedding')
+            st.session_state.dataclysm_title_indexed = reshape_and_add_faiss_index(df, 'title-embeddings')
             tsne_results = perform_tsne(embeddings)
             df = perform_clustering(df, tsne_results)
             # Store results in session state
@@ -487,7 +487,7 @@ def main():
                 query_embedding = model.encode([query])
                 query_embedding = np.array(query_embedding).reshape(1, -1).astype('float32')
                 # Retrieve examples by title similarity (or abstract, depending on your preference)
-                scores_title, retrieved_examples_title = st.session_state.dataclysm_title_indexed.get_nearest_examples('title_embedding', query_embedding, k=top_k)
+                scores_title, retrieved_examples_title = st.session_state.dataclysm_title_indexed.get_nearest_examples('title-embeddings', query_embedding, k=top_k)
                 df_query = pd.DataFrame(retrieved_examples_title)
                 df_query['proximity'] = scores_title
                 df_query = df_query.sort_values(by='proximity', ascending=True)
@@ -495,7 +495,7 @@ def main():
                 df_query['proximity'] = df_query['proximity'].round(3)
                 # Fix the <a href link> to display properly
                 df_query['URL'] = df_query['id'].apply(lambda x: f'<a href="https://arxiv.org/abs/{x}" target="_blank">Link</a>')
-                st.sidebar.markdown(df_query[['title', 'proximity', 'id']].to_html(escape=False), unsafe_allow_html=True)
+                st.sidebar.markdown(df_query[['title', 'proximity', 'id', 'update_date']].to_html(escape=False), unsafe_allow_html=True)
                 # Get the ID of the top search result
                 top_result_id = df_query.iloc[0]['id']
 
