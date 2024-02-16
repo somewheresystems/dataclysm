@@ -10,7 +10,6 @@ import time, random, datetime
 import logging
 from sklearn.cluster import HDBSCAN
 
-
 BACKGROUND_COLOR = 'black'
 COLOR = 'white'
 
